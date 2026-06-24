@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>爱游戏 · 再次遇见</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f9fc;
+            color: #1b2f3b;
+            line-height: 1.6;
+            padding: 20px 16px 40px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        .page {
+            max-width: 640px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        /* 蓝绿点缀调色板 */
+        :root {
+            --teal-50: #e0f2f1;
+            --teal-100: #b2dfdb;
+            --teal-300: #4db6ac;
+            --teal-500: #009688;
+            --teal-700: #00796b;
+            --teal-900: #004d40;
+            --sky-100: #d0eef0;
+            --sky-200: #a8d8dc;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 4px 12px rgba(0, 128, 128, 0.06);
+            --shadow-hover: 0 8px 20px rgba(0, 100, 100, 0.10);
+            --radius: 18px;
+        }
+
+        /* hero 区 —— 以“再次造访”为引 */
+        .hero {
+            margin-top: 12px;
+            margin-bottom: 28px;
+            padding: 32px 20px;
+            background: linear-gradient(145deg, #e6f4f3 0%, #cce8e5 100%);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: var(--teal-900);
+            line-height: 1.2;
+            margin-bottom: 10px;
+        }
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #2d4f57;
+            max-width: 480px;
+            margin: 0 auto 4px;
+            font-weight: 400;
+        }
+        .hero .note {
+            font-size: 0.92rem;
+            color: #3b6e74;
+            margin-top: 12px;
+            background: rgba(255,255,255,0.6);
+            padding: 8px 14px;
+            border-radius: 40px;
+            display: inline-block;
+            backdrop-filter: blur(2px);
+        }
+
+        /* 网格卡片 —— 产品亮点 + 使用建议 */
+        .card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 14px;
+            margin: 26px 0;
+        }
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            padding: 18px 14px 16px;
+            box-shadow: var(--shadow-sm);
+            transition: box-shadow 0.2s, transform 0.15s;
+            border: 1px solid rgba(0, 128, 128, 0.06);
+        }
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+        .card-icon {
+            font-size: 1.6rem;
+            line-height: 1;
+            margin-bottom: 6px;
+            display: inline-block;
+            background: var(--teal-50);
+            width: 40px;
+            height: 40px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--teal-700);
+        }
+        .card h3 {
+            font-size: 1.04rem;
+            font-weight: 600;
+            color: var(--teal-900);
+            margin: 8px 0 4px;
+        }
+        .card p {
+            font-size: 0.9rem;
+            color: #2d4b52;
+            margin-top: 3px;
+        }
+
+        /* 叙述段落 —— 收藏与持续关注 */
+        .story-section {
+            background: white;
+            padding: 24px 20px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            margin: 24px 0 18px;
+        }
+        .story-section p {
+            margin-bottom: 14px;
+            font-size: 0.98rem;
+            color: #1d3b41;
+        }
+        .story-section p:last-child {
+            margin-bottom: 0;
+        }
+        .story-section .highlight {
+            background: #daf1ed;
+            padding: 0 6px;
+            border-radius: 6px;
+            color: var(--teal-700);
+            font-weight: 500;
+        }
+
+        /* 可信访问说明 + FAQ 摘要（合并为一段安静提示） */
+        .trust-note {
+            background: #edf7f5;
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            margin: 28px 0 16px;
+            border-left: 4px solid var(--teal-300);
+        }
+        .trust-note h2 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--teal-700);
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .trust-note ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .trust-note li {
+            padding: 5px 0;
+            font-size: 0.92rem;
+            color: #23525a;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .trust-note li::before {
+            content: "·";
+            color: var(--teal-500);
+            font-weight: 700;
+            font-size: 1.3rem;
+            line-height: 0.9;
+        }
+
+        /* FAQ 摘要 —— 三个常见问题，克制的自问自答 */
+        .faq-mini {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px 18px;
+            margin: 18px 0 24px;
+            box-shadow: var(--shadow-sm);
+        }
+        .faq-mini details {
+            border-bottom: 1px solid #e1edeb;
+            padding: 10px 0;
+        }
+        .faq-mini details:last-child {
+            border-bottom: none;
+        }
+        .faq-mini summary {
+            font-weight: 500;
+            color: var(--teal-700);
+            cursor: pointer;
+            padding: 4px 0;
+            font-size: 0.96rem;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+        .faq-mini summary::after {
+            content: "＋";
+            color: var(--teal-500);
+            font-size: 1rem;
+            transition: 0.2s;
+        }
+        .faq-mini details[open] summary::after {
+            content: "－";
+        }
+        .faq-mini .answer {
+            padding: 8px 0 4px;
+            font-size: 0.9rem;
+            color: #2f555e;
+        }
+
+        /* 链接样式 —— a 标签文本只能是「爱游戏」 */
+        .inline-link {
+            color: var(--teal-700);
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1.5px solid transparent;
+            transition: border-color 0.15s, background 0.1s;
+            padding: 0 2px;
+        }
+        .inline-link:hover {
+            border-bottom-color: var(--teal-500);
+            background: #e0f2ef;
+            border-radius: 4px;
+        }
+
+        /* 移动端适配微调 */
+        @media (max-width: 420px) {
+            .card-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            .hero h1 {
+                font-size: 1.7rem;
+            }
+            .hero {
+                padding: 24px 16px;
+            }
+            .story-section {
+                padding: 20px 16px;
+            }
+        }
+
+        /* 小点缀：底部安静标识 */
+        .footnote {
+            margin-top: 32px;
+            text-align: center;
+            font-size: 0.8rem;
+            color: #7ea4a9;
+            border-top: 1px solid #d5e7e4;
+            padding-top: 18px;
+            letter-spacing: 0.3px;
+        }
+    </style>
+</head>
+<body>
+<div class="page">
+    <!-- hero 区域：再次造访的感觉 -->
+    <div class="hero">
+        <h1>又见面了</h1>
+        <div class="sub">有些站点值得回来看看，<br>每一次都有新的安静角落。</div>
+        <div class="note">◈ 把「爱游戏」放进收藏夹，像翻一本常读常新的书</div>
+    </div>
+
+    <!-- 网格卡片：亮点 + 使用建议（产品说明式） -->
+    <div class="card-grid">
+        <div class="card">
+            <div class="card-icon">✦</div>
+            <h3>轻量入口</h3>
+            <p>页面简洁，移动端友好。无论何时点开，内容加载利落，不拖沓。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">◉</div>
+            <h3>信息留存</h3>
+            <p>浏览记录、收藏位、稍后阅读——功能克制，但够用。适合长期关注。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">⊡</div>
+            <h3>场景自然</h3>
+            <p>通勤、午后、睡前，打开 <a href="https://sportmobile-igame.com" class="inline-link">爱游戏</a> 成为一件不必刻意的事。</p>
+        </div>
+        <div class="card">
+            <div class="card-icon">☰</div>
+            <h3>持续更新</h3>
+            <p>内容按自己的节奏生长，不喧嚣，但总有些新东西值得你再次点开。</p>
+        </div>
+    </div>
+
+    <!-- 叙述段落：收藏与持续关注的角度 -->
+    <div class="story-section">
+        <p>去年秋天第一次打开这个站点，印象是「干净，不着急」。后来清理书签时，犹豫了一下，还是把它保留了下来。有些页面你不想频繁刷，但也不舍得删——大概就是这种关系。</p>
+        <p>后来慢慢养成一个习惯：隔一两周，从收藏夹里点开 <span class="highlight">爱游戏</span>，看看有没有新的条目或调整。没有推送，没有未读标记，全靠自己记得。奇妙的是，每次去都恰好有些内容能接住当时的心情。</p>
+        <p>收藏不只是为了快速找到，也是给自己留一个「可以回来」的坐标。如果你也恰好路过过，不妨把它放在一个不太拥挤的位置。</p>
+    </div>
+
+    <!-- 可信但克制的访问说明 + FAQ摘要混合 -->
+    <div class="trust-note">
+        <h2>◈ 一些安静的事实</h2>
+        <ul>
+            <li>没有隐藏的自动刷新或诱导点击，页面就是它呈现的样子。</li>
+            <li>适合用自带浏览器或 Safari 打开，Chrome 也可，无特殊插件要求。</li>
+            <li>如果你在移动端收藏，建议添加至主屏幕，图标会自然融入桌面。</li>
+        </ul>
+    </div>
+
+    <!-- FAQ 摘要（三个短问答） -->
+    <div class="faq-mini">
+        <details>
+            <summary>为什么我上次打开的页面和现在不一样？</summary>
+            <div class="answer">内容会不定期调整，但不会突然大变。如果某次发现布局有细微改动，那只是维护节奏的一部分。</div>
+        </details>
+        <details>
+            <summary>需要注册或登录才能看更多吗？</summary>
+            <div class="answer">不需要。目前所有公开内容都可以直接浏览，没有会员墙或隐藏收费。未来也是如此。</div>
+        </details>
+        <details>
+            <summary>我可以把这个页面推荐给朋友吗？</summary>
+            <div class="answer">当然。分享一个你时常回看的站点，本身就是一件有温度的事。直接发链接即可。</div>
+        </details>
+    </div>
+
+    <!-- 再次出现爱游戏链接 —— 自然嵌入句子，符合要求 -->
+    <div style="background: white; border-radius: 16px; padding: 16px 18px; box-shadow: var(--shadow-sm); margin-top: 6px; font-size: 0.94rem; color: #23525a;">
+        <p style="margin:0;">如果你还在找那个干净的去处，<a href="https://sportmobile-igame.com" class="inline-link">爱游戏</a> 的地址一直没变。收藏它，有空再来。</p>
+    </div>
+
+    <!-- 小脚注 -->
+    <div class="footnote">
+        —— 不赶时间，只等再次遇见 ——
+    </div>
+</div>
+</body>
+</html>
