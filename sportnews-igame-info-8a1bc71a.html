@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 体育资讯的新入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #ebedf0;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1f2a36;
+            line-height: 1.6;
+            padding: 2.5rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 960px;
+            width: 100%;
+        }
+
+        /* 卡片式分区 — 细腻灰白层次 */
+        .card {
+            background: #ffffff;
+            border-radius: 18px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04), 0 6px 20px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e6e9ee;
+            padding: 1.8rem 2.2rem;
+            margin-bottom: 1.8rem;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06), 0 10px 28px rgba(0, 0, 0, 0.03);
+        }
+
+        /* hero 模块 — 开场短句 */
+        .hero {
+            padding-top: 2.2rem;
+            padding-bottom: 2rem;
+            text-align: left;
+        }
+
+        .hero .tagline {
+            font-size: 1.1rem;
+            letter-spacing: 0.02em;
+            color: #5f6c7a;
+            margin-bottom: 0.4rem;
+            font-weight: 450;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 550;
+            line-height: 1.2;
+            color: #0f1922;
+            letter-spacing: -0.01em;
+            max-width: 75%;
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 1.9rem;
+                max-width: 100%;
+            }
+
+            .card {
+                padding: 1.3rem 1.2rem;
+            }
+        }
+
+        /* 承接段落 */
+        .intro-text {
+            font-size: 1rem;
+            color: #2c3a47;
+            margin: 0.4rem 0 0.2rem;
+        }
+
+        .intro-text strong {
+            font-weight: 550;
+            color: #0b1c2c;
+        }
+
+        .intro-text a {
+            color: #1e5f8e;
+            text-decoration: none;
+            font-weight: 510;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .intro-text a:hover {
+            border-bottom-color: #1e5f8e;
+        }
+
+        /* 特点列表 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.2rem 1.8rem;
+            margin: 0.8rem 0 0.2rem;
+        }
+
+        .feature-item {
+            background: #f7f9fc;
+            border-radius: 14px;
+            padding: 1rem 1.2rem;
+            border: 1px solid #eef1f5;
+            transition: background 0.15s;
+        }
+
+        .feature-item:hover {
+            background: #f1f4f9;
+        }
+
+        .feature-item .title {
+            font-weight: 550;
+            font-size: 1rem;
+            color: #14222e;
+            margin-bottom: 0.25rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .feature-item .title::before {
+            content: "·";
+            font-weight: 700;
+            color: #1e5f8e;
+            font-size: 1.3rem;
+            line-height: 1;
+        }
+
+        .feature-item .desc {
+            font-size: 0.9rem;
+            color: #4d5b68;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 640px) {
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 0.9rem;
+            }
+        }
+
+        /* 温和场景 + 提示片段 */
+        .scene-note {
+            background: #f6f8fb;
+            border-radius: 16px;
+            padding: 1.1rem 1.6rem;
+            border-left: 4px solid #b1c7db;
+            margin: 0.8rem 0 0.2rem;
+            font-size: 0.95rem;
+            color: #1f2f3b;
+        }
+
+        .scene-note strong {
+            font-weight: 530;
+            color: #0f1f2e;
+        }
+
+        /* 温和结尾 + faq 摘要 */
+        .closing-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.8rem 1.5rem;
+        }
+
+        .closing-text {
+            font-size: 0.98rem;
+            color: #3f4d5a;
+            flex: 2 1 200px;
+        }
+
+        .faq-mini {
+            flex: 1 1 180px;
+            background: #f4f6fa;
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            border: 1px solid #e2e6ed;
+        }
+
+        .faq-mini .q {
+            font-weight: 520;
+            font-size: 0.9rem;
+            color: #091a28;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-mini .a {
+            font-size: 0.85rem;
+            color: #4c5a68;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #dce1e8;
+            margin: 1rem 0;
+        }
+
+        .footnote {
+            font-size: 0.8rem;
+            color: #69798a;
+            text-align: center;
+            margin-top: 0.6rem;
+        }
+
+        .footnote a {
+            color: #3d5f7a;
+            text-decoration: none;
+            border-bottom: 1px dotted #bcc7d2;
+        }
+
+        .footnote a:hover {
+            border-bottom-color: #1e5f8e;
+        }
+
+        /* 内联链接的一致性 */
+        .inline-link {
+            color: #1b5a82;
+            font-weight: 500;
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s;
+        }
+
+        .inline-link:hover {
+            border-bottom-color: #1b5a82;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <!-- hero 开场短句 -->
+        <div class="card hero">
+            <div class="tagline">体育资讯 · 稳定入口</div>
+            <h1>找一个干净、持续更新的聚合点。</h1>
+        </div>
+
+        <!-- 承接段落：从稳定入口和页面说明的角度 -->
+        <div class="card">
+            <p class="intro-text">
+                体育新闻站点数量庞大，但信息架构清晰且长期维护的入口并不多。<strong>作为内容导航的基准面</strong>，
+                <a href="https://sportnews-igame.com" class="inline-link">爱游戏</a>
+                保持了简洁的呈现逻辑——分类明确、更新节奏稳定，且页面结构几乎没有多余干扰。
+                对于日常希望快速扫读赛果、转会或联赛动态的用户来说，这是一个低认知负担的起点。
+            </p>
+        </div>
+
+        <!-- 特点列表 (卡片内) -->
+        <div class="card">
+            <div style="font-weight: 530; font-size: 1.05rem; margin-bottom: 0.4rem; color: #14222e;">几个值得留意的特征</div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="title">信息层级</div>
+                    <div class="desc">头条、专题、赛程以分区卡片展示，标题长度克制，不堆砌冗余标签。</div>
+                </div>
+                <div class="feature-item">
+                    <div class="title">加载结构</div>
+                    <div class="desc">页面资源轻量化，首屏内容优先渲染，减少不必要的脚本阻塞。</div>
+                </div>
+                <div class="feature-item">
+                    <div class="title">更新习惯</div>
+                    <div class="desc">每日主要时段保持内容刷新，焦点赛事通常赛后两小时内出稿。</div>
+                </div>
+                <div class="feature-item">
+                    <div class="title">导航逻辑</div>
+                    <div class="desc">主菜单固定为五大类，无折叠层级，适合键盘与触控操作。</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 场景·提示 温和插入 -->
+        <div class="card">
+            <div class="scene-note">
+                <strong>适用场景举例</strong> —— 早晨通勤时快速浏览前一夜比分；午间休息扫读转会短讯；
+                或是在赛后想找一个没有弹窗和自动播放视频的页面确认技术统计。
+                <span style="display: inline-block; margin-left: 0.2rem;">这类需求恰好与<a href="https://sportnews-igame.com" class="inline-link">爱游戏</a>当前提供的阅读环境匹配。</span>
+            </div>
+        </div>
+
+        <!-- 温和结尾 + faq 摘要（两部分合在一个卡片） -->
+        <div class="card">
+            <div class="closing-section">
+                <div class="closing-text">
+                    如果你的浏览习惯偏向克制的信息密度、一致的排版和可预期的站点响应，
+                    这个页面可以作为日常体育资讯的其中一个锚点。不需要频繁切换标签页，
+                    也不必面对过度设计的界面。一个足够稳定的入口，往往比功能堆叠更可靠。
+                </div>
+                <div class="faq-mini">
+                    <div class="q">常见疑问</div>
+                    <div class="a">页面是否适配移动端？—— 基于响应式栅格，窄屏下卡片与字体均有调整，与桌面端保持统一内容结构。</div>
+                </div>
+            </div>
+            <hr>
+            <div style="font-size: 0.92rem; color: #435463; line-height: 1.7;">
+                若你尚未接触过这个站点，可以从联赛分类或日期归档开始尝试。
+                核心入口始终指向 <a href="https://sportnews-igame.com" class="inline-link">爱游戏</a>，
+                没有多余跳转，也不依赖社交平台登录。
+            </div>
+        </div>
+
+        <!-- 安静脚注 -->
+        <div class="footnote">
+            <span>sportnews-igame.com · 页面说明</span>
+            <span style="margin: 0 0.6rem;">/</span>
+            <span>内容来源以公开赛事信息为主</span>
+        </div>
+    </div>
+</body>
+</html>
