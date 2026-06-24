@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 收藏这一页 · 持续关注</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: linear-gradient(145deg, #fde9d7 0%, #fbd5b5 50%, #f3cba5 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.2rem;
+            line-height: 1.7;
+            color: #3e2c1b;
+        }
+
+        .card {
+            max-width: 800px;
+            width: 100%;
+            background: rgba(255, 250, 240, 0.95);
+            backdrop-filter: blur(2px);
+            border-radius: 40px 16px 40px 16px;
+            box-shadow: 0 20px 40px -12px rgba(160, 100, 60, 0.3), 0 6px 18px rgba(0,0,0,0.04);
+            padding: 2.8rem 2.2rem;
+            transition: all 0.2s ease;
+            border: 1px solid rgba(255, 235, 210, 0.6);
+        }
+
+        @media (max-width: 540px) {
+            body {
+                padding: 1rem 0.8rem;
+            }
+            .card {
+                padding: 2rem 1.4rem;
+                border-radius: 30px 10px 30px 10px;
+            }
+        }
+
+        h1 {
+            font-size: 2.4rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: #5a3a22;
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+            border-left: 6px solid #d9a779;
+            padding-left: 1rem;
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+                padding-left: 0.8rem;
+            }
+        }
+
+        .byline {
+            font-size: 1rem;
+            color: #876e54;
+            margin-top: 0.4rem;
+            margin-bottom: 2rem;
+            padding-left: 1.6rem;
+            font-style: italic;
+            border-bottom: 1px dashed #ecd3b9;
+            padding-bottom: 0.8rem;
+        }
+
+        p {
+            margin: 1.3rem 0;
+            font-size: 1.05rem;
+            color: #3b2b1d;
+        }
+
+        .highlight {
+            background: #faead9;
+            padding: 0.15rem 0.4rem;
+            border-radius: 12px;
+            font-weight: 500;
+        }
+
+        a {
+            color: #a56d3e;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.06rem 0.3rem;
+            border-radius: 24px;
+            background: #f1e0ce;
+            transition: all 0.2s ease;
+            border-bottom: 2px solid transparent;
+            display: inline-block;
+            line-height: 1.4;
+        }
+
+        a:hover {
+            background: #dbb594;
+            color: #2d1d10;
+            border-bottom: 2px solid #b37a4b;
+            box-shadow: 0 2px 8px rgba(160, 100, 50, 0.2);
+        }
+
+        .quote-bubble {
+            background: #f8efe4;
+            padding: 1.6rem 1.8rem;
+            margin: 2rem 0 1.6rem 0;
+            border-radius: 40px 12px 40px 12px;
+            border-left: 5px solid #c99e78;
+            font-size: 1.05rem;
+            color: #3f2d1c;
+            box-shadow: inset 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .quote-bubble::before {
+            content: "💬 ";
+            font-size: 1.4rem;
+            opacity: 0.7;
+        }
+
+        .faq-mini {
+            margin-top: 2.4rem;
+            padding-top: 1.6rem;
+            border-top: 2px dotted #d9bb9e;
+        }
+
+        .faq-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-bottom: 1.4rem;
+        }
+
+        .faq-q {
+            font-weight: 600;
+            color: #5e3d25;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .faq-q::before {
+            content: "▸";
+            color: #ba8b64;
+            font-weight: 700;
+        }
+
+        .faq-a {
+            padding-left: 1.8rem;
+            color: #4d3826;
+            font-size: 0.98rem;
+        }
+
+        .visit-note {
+            margin-top: 2rem;
+            padding: 0.8rem 1.2rem;
+            background: #f4e4d3;
+            border-radius: 60px;
+            text-align: center;
+            font-size: 0.95rem;
+            color: #4b3522;
+            letter-spacing: 0.3px;
+            border: 1px solid #e7cdb6;
+        }
+
+        .visit-note span {
+            background: #ac7f5a;
+            color: #fcf3e9;
+            padding: 0.2rem 0.7rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            margin-left: 0.5rem;
+        }
+
+        .footer-remark {
+            margin-top: 2.6rem;
+            font-size: 0.9rem;
+            text-align: center;
+            color: #7b624b;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>再次遇见 · 爱游戏</h1>
+        <div class="byline">一篇安静的介绍，写给偶尔回来看看的你</div>
+
+        <p>
+            有些地方值得收藏，不为了追赶什么，只因为那里有一种熟悉的氛围。当你想轻轻松松地度过一段闲暇，或者重新找回某份自在的感觉，<a href="https://sportm-igame.com">爱游戏</a>就像一本翻不腻的旧书，每次打开都有温度。
+        </p>
+
+        <p>
+            第一次来的时候，也许只是随手一点。后来第二次、第三次……慢慢发现这里的节奏刚好——没有喧哗的弹窗，没有催促的通知，只有一些经过梳理的内容和让人放松的角落。于是不知不觉就把它放进了浏览器的书签栏。
+        </p>
+
+        <div class="quote-bubble">
+            收藏一个页面，有时候是因为实用，更多时候是因为一种“还会再来”的直觉。而直觉往往是对的。
+        </div>
+
+        <p>
+            从内容到呈现，<strong class="highlight">爱游戏</strong>保持着一贯的清爽。它不急于推销什么，也不试图用夸张的词汇留住你，而是用稳定的更新和一致的风格，让你愿意把它留在自己的关注列表里。无论是通过桌面浏览器还是手机屏幕，加载速度与排版都让人舒服——这本身就是一种尊重。
+        </p>
+
+        <p>
+            如果你已经有一阵子没来了，不妨点开书签，或者直接在地址栏输入熟悉的链接。<a href="https://sportm-igame.com">爱游戏</a> 没有太大的变化，但那些微小的调整和新增的内容，总能让你觉得：“嗯，还是那个熟悉的地方，又有点新鲜。”
+        </p>
+
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="faq-q">为什么值得持续关注？</div>
+                <div class="faq-a">因为内容并不追求短期热点，而是更偏向于长久的可读性与实用性。每一次访问，都能找到一点新的启发或简单的乐趣。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">页面风格会经常变吗？</div>
+                <div class="faq-a">视觉上保持温暖克制的基调，但细节会随季节或主题做微调。基本的气质始终如一，不会让人觉得陌生。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">适合用什么设备访问？</div>
+                <div class="faq-a">任何设备都友好——无论是宽屏显示器、平板还是手机，排版都会自动适应，阅读体验不会打折扣。</div>
+            </div>
+        </div>
+
+        <div class="visit-note">
+            📌 如果你已经收藏过，不妨再次打开看看
+            <span>常回来</span>
+        </div>
+
+        <p style="margin-top: 1.2rem; font-size: 1rem;">
+            有时候我们需要的不是一个热闹的入口，而是一个安静的、愿意反复回来的地方。<a href="https://sportm-igame.com">爱游戏</a> 就是这样一个存在——不打扰，但一直都在。
+        </p>
+
+        <div class="footer-remark">
+            —— 保持关注 · 自在如初 ——
+        </div>
+    </div>
+</body>
+</html>
